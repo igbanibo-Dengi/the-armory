@@ -19,7 +19,7 @@ const Footer = () => {
                 </div>
                 <div className='flex items-center text-center'>
                     <p>Armory is a unique platform for user to create and share CODM loadouts.
-                        Build, Share, and collectively inspire the gaming community – tha&apos;s the essence of Armory.
+                        Build, Share, and collectively inspire the gaming community – that&apos;s the essence of Armory.
                     </p>
                 </div>
                 <div className="flex flex-col space-y-4 items-center  lg:pl-20">
