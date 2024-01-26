@@ -33,12 +33,12 @@ export function FileUploader({
     return (
         <div
             {...getRootProps()}
-            className="flex-center bg-dark-3 flex h-72 cursor-pointer flex-col overflow-hidden rounded-xl bg-grey-50"
+            className="flex-center bg-dark-3 flex   cursor-pointer flex-col overflow-hidden rounded-xl bg-grey-50"
         >
             <input {...getInputProps()} className="cursor-pointer" />
 
             {imageUrl ? (
-                <div className="flex h-full w-full flex-1 justify-center items-center">
+                <div className="flex w-full flex-1 justify-center items-center">
                     <img
                         src={imageUrl}
                         alt="image"
@@ -49,11 +49,6 @@ export function FileUploader({
                 </div>
             ) : (
                 <div className="flex justify-center items-center flex-col py-5 text-grey-500">
-
-                    <UploadCloud size={40} strokeWidth={1} />
-                    <h3 className="mb-2 mt-2">Drag your image here</h3>
-                    <p className=" mb-4">SVG, PNG, JPG</p>
-                    <p className="mb-4">or</p>
                     <Button type="button" variant={"outline"}>
                         Click to upload
                     </Button>

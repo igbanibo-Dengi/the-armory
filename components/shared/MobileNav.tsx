@@ -5,10 +5,10 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import Link from 'next/link'
-import { SignedOut, SignedIn } from '@clerk/nextjs'
+import { SignedOut, SignedIn, SignOutButton } from '@clerk/nextjs'
 import { Button } from '../ui/button'
 import { Separator } from '../ui/separator'
-import { AlignJustify } from 'lucide-react'
+import { AlignJustify, LogOut } from 'lucide-react'
 
 
 const MobileNav = () => {
@@ -46,6 +46,15 @@ const MobileNav = () => {
                         </Button>
                         <Separator />
                     </SignedOut>
+                    <div className='mt-auto ml-auto py-10'>
+                        <SignedIn >
+                            <SignOutButton>
+                                <Button variant={"outline"} className='border-none'>
+                                    <LogOut />
+                                </Button>
+                            </SignOutButton>
+                        </SignedIn>
+                    </div>
 
                 </SheetContent>
             </Sheet>

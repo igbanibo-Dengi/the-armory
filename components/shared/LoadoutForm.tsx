@@ -122,7 +122,7 @@ const LoadoutForm = () => {
 
     return (
         <main >
-            <section className='container mt-20'>
+            <section className='container max-w-2xl mt-20'>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 
