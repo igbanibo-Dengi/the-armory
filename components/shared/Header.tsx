@@ -27,14 +27,14 @@ const Header = () => {
     return (
         <header className="py-5 z-50  fixed w-full" style={{ backgroundColor: navColor, transition: "all 0.5s" }}>
             <div className='container px-5 md:px-10 flex justify-between md:grid grid-cols-3 w-full items-center'>
-                <div>
+                <Link href="/">
                     <Image
                         src="/logo-main.svg"
                         alt='logo'
                         width={100}
                         height={50}
                     />
-                </div>
+                </Link>
 
                 <div className='hidden md:flex flex-col md:flex-row justify-center items-center gap-4 '>
                     <SignedIn>

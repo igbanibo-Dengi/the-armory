@@ -5,7 +5,7 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import Link from 'next/link'
-import { SignedOut, SignedIn, SignOutButton } from '@clerk/nextjs'
+import { SignedOut, SignedIn, SignOutButton, UserButton } from '@clerk/nextjs'
 import { Button } from '../ui/button'
 import { Separator } from '../ui/separator'
 import { AlignJustify, LogOut } from 'lucide-react'
@@ -39,7 +39,6 @@ const MobileNav = () => {
                         </Link>
                     </SignedIn>
                     <Separator />
-
                     <SignedOut>
                         <Button asChild size="lg" className='w-fit'>
                             <Link href="/sign-in">Login</Link>

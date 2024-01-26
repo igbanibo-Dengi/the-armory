@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ceaser } from "../font";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 export default function Home() {
   return (
@@ -23,14 +24,21 @@ export default function Home() {
                 Explore
               </Link>
             </Button>
-            <Button asChild size="lg">
-              <Link href='/'>
-                Build
-              </Link>
-            </Button>
+            <SignedIn>
+              <Button asChild size="lg">
+                <Link href='/loadouts/create'>
+                  Build
+                </Link>
+              </Button>
+            </SignedIn>
+            <SignedOut>
+              <Button asChild size="lg" className='w-fit'>
+                <Link href="/sign-in">Build</Link>
+              </Button>
+            </SignedOut>
           </div>
         </div>
       </section>
-    </main>
+    </main >
   );
 }
