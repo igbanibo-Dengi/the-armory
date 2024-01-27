@@ -17,7 +17,6 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from "@/components/ui/form"
 import {
@@ -43,11 +42,17 @@ import { useState } from "react"
 
 import { firstAttachments, fifthAttachments, fourthAttachments, secondAttachments, thirdAttachments, weapons } from "@/constants"
 import { FileUploader } from "../FileUploader"
+import { ILoadout } from "@/lib/database/models/loadout.model"
+import { useUploadThing } from "@/lib/uploadthing"
+import { useRouter } from "next/navigation"
+import { createLoadout, updateLoadout } from "@/lib/actions/loadout.actions"
 
-// type LoadoutFormProps = {
-//     userId: string,
-//     type: 'Create' | 'Update'
-// }
+type LoadoutFormProps = {
+    userId: string;
+    type: "Create" | "Update";
+    loadout?: ILoadout;
+    loadoutId?: string;
+}
 
 
 
@@ -86,36 +91,102 @@ const FormSchema = z.object({
     }),
 })
 
+const loadoutDefaultValues = {
+    title: '',
+    weapon: '',
+    gameMode: '',
+    description: '',
+    imageUrl: '',
+    firstAttachment: '',
+    secondAttachment: '',
+    thirdAttachment: '',
+    fourthAttachment: '',
+    fifthAttachment: '',
+    categoryId: '',
+}
 
 
 
 
 
-const LoadoutForm = () => {
+
+const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => {
     const [files, setFiles] = useState<File[]>([])
+    const initialValues =
+        loadout && type === "Update"
+            ? {
+                ...loadout
+            } :
+            loadoutDefaultValues;
+
+    const router = useRouter();
+
+    const { startUpload } = useUploadThing('imageUploader')
 
     // 1. Define a form instance.
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
-        defaultValues: {
-            title: '',
-            weapon: '',
-            gameMode: '',
-            description: '',
-            imageUrl: '',
-            firstAttachment: '',
-            secondAttachment: '',
-            thirdAttachment: '',
-            fourthAttachment: '',
-            fifthAttachment: '',
-            categoryId: '',
-        }
+        defaultValues: initialValues
 
     })
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof FormSchema>) {
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof FormSchema>) {
+        // console.log(values)
+
+        let uploadedImageUrl = values.imageUrl;
+
+        if (files.length > 0) {
+
+            const uploadedImages = await startUpload(files);
+
+            if (!uploadedImages) {
+                return;
+            }
+            uploadedImageUrl = uploadedImages[0].url;
+
+        }
+
+
+        if (type === "Create") {
+            try {
+                const newLoadout = await createLoadout({
+                    loadout: { ...values, imageUrl: uploadedImageUrl, },
+                    userId,
+                    path: "/profile"
+                })
+
+                if (newLoadout) {
+                    form.reset;
+                    router.push(`/loadouts/${newLoadout._id}`)
+                }
+            } catch (error) {
+                console.log(error);
+
+            }
+        }
+
+        if (type === "Update") {
+            if (!loadoutId) {
+                router.back();
+                return
+            }
+            try {
+                const updatedLoadout = await updateLoadout({
+                    userId,
+                    loadout: { ...values, imageUrl: uploadedImageUrl, _id: loadoutId },
+                    path: `/loadouts/${loadoutId}`,
+                })
+                if (updatedLoadout) {
+                    form.reset();
+                    router.push(`/laodouts/${updatedLoadout._id}`);
+                }
+            } catch (error) {
+                console.log(error);
+
+            }
+
+        }
     }
 
 
@@ -608,3 +679,4 @@ const LoadoutForm = () => {
 }
 
 export default LoadoutForm
+

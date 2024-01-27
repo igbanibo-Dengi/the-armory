@@ -30,7 +30,6 @@ export type CreateLoadoutParams = {
         fifthAttachment: string
         imageUrl: string
         categoryId: string
-        url: string
     }
     path: string
 }
@@ -50,7 +49,6 @@ export type UpdateLoadoutParams = {
         fifthAttachment: string
         imageUrl: string
         categoryId: string
-        url: string
     }
     path: string
 }
@@ -93,7 +91,6 @@ export type loadout = {
     fifthAttachment: string
     imageUrl: string
     categoryId: string
-    url: string
     creator: {
         _id: string
         firstName: string

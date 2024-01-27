@@ -1,6 +1,6 @@
 import { Document, Schema, model, models } from "mongoose";
 
-export interface IEvent extends Document {
+export interface ILoadout extends Document {
     _id: string;
     title: string;
     weapon: string;
@@ -13,7 +13,6 @@ export interface IEvent extends Document {
     fifthAttachment: string
     createdAt: Date;
     imageUrl: string;
-    url?: string;
     category: { _id: string, name: string }
     creator: { _id: string, firstName: string, lastName: string }
 }
@@ -30,7 +29,6 @@ const LoadoutSchema = new Schema({
     fifthAttachment: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
     imageUrl: { type: String, required: true },
-    url: { type: String },
     category: { type: Schema.Types.ObjectId, ref: 'Category' },
     creator: { type: Schema.Types.ObjectId, ref: 'User' },
 })

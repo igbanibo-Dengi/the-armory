@@ -11,25 +11,27 @@ import { CreateLoadoutParams, DeleteLoadoutParams, GetAllLoadoutsParams, GetLoad
 
 
 
+
+
 const getCategoryByName = async (name: string) => {
     return Category.findOne({ name: { $regex: name, $options: 'i' } })
 }
 
-const populateEvent = (query: any) => {
+const populateLoadout = (query: any) => {
     return query
-        .populate({ path: 'organizer', model: User, select: '_id firstName lastName' })
+        .populate({ path: 'creator', model: User, select: '_id firstName lastName' })
         .populate({ path: 'category', model: Category, select: '_id name' })
 }
 
 // CREATE
-export async function createEvent({ userId, loadout, path }: CreateLoadoutParams) {
+export async function createLoadout({ userId, loadout, path }: CreateLoadoutParams) {
     try {
         await connectToDatabase()
 
-        const organizer = await User.findById(userId)
-        if (!organizer) throw new Error('Organizer not found')
+        const creator = await User.findById(userId)
+        if (!creator) throw new Error('Creator not found')
 
-        const newLoadout = await Loadout.create({ ...loadout, category: loadout.categoryId, organizer: userId })
+        const newLoadout = await Loadout.create({ ...loadout, category: loadout.categoryId, creator: userId })
         revalidatePath(path)
 
         return JSON.parse(JSON.stringify(newLoadout))
@@ -39,11 +41,11 @@ export async function createEvent({ userId, loadout, path }: CreateLoadoutParams
 }
 
 // GET ONE LOADOUT BY ID
-export async function getEventById(eventId: string) {
+export async function getId(eventId: string) {
     try {
         await connectToDatabase()
 
-        const loadout = await populateEvent(Loadout.findById(eventId))
+        const loadout = await populateLoadout(Loadout.findById(eventId))
 
         if (!loadout) throw new Error('Loadout not found')
 
@@ -54,12 +56,12 @@ export async function getEventById(eventId: string) {
 }
 
 // UPDATE
-export async function updateEvent({ userId, loadout, path }: UpdateLoadoutParams) {
+export async function updateLoadout({ userId, loadout, path }: UpdateLoadoutParams) {
     try {
         await connectToDatabase()
 
         const loadoutToUpdate = await Loadout.findById(loadout._id)
-        if (!loadoutToUpdate || loadoutToUpdate.organizer.toHexString() !== userId) {
+        if (!loadoutToUpdate || loadoutToUpdate.creator.toHexString() !== userId) {
             throw new Error('Unauthorized or loadout not found')
         }
 
@@ -77,7 +79,7 @@ export async function updateEvent({ userId, loadout, path }: UpdateLoadoutParams
 }
 
 // DELETE
-export async function deleteEvent({ loadoutId, path }: DeleteLoadoutParams) {
+export async function deleteLoadout({ loadoutId, path }: DeleteLoadoutParams) {
     try {
         await connectToDatabase()
 
@@ -89,7 +91,7 @@ export async function deleteEvent({ loadoutId, path }: DeleteLoadoutParams) {
 }
 
 // GET ALL EVENTS
-export async function getAllEvents({ query, limit = 6, page, category }: GetAllLoadoutsParams) {
+export async function getAllLoaddouts({ query, limit = 6, page, category }: GetAllLoadoutsParams) {
     try {
         await connectToDatabase()
 
@@ -105,7 +107,7 @@ export async function getAllEvents({ query, limit = 6, page, category }: GetAllL
             .skip(skipAmount)
             .limit(limit)
 
-        const loadouts = await populateEvent(loadoutQuery)
+        const loadouts = await populateLoadout(loadoutQuery)
         const loadoutCount = await Loadout.countDocuments(conditions)
 
         return {
@@ -117,12 +119,12 @@ export async function getAllEvents({ query, limit = 6, page, category }: GetAllL
     }
 }
 
-// GET EVENTS BY ORGANIZER
-export async function getEventsByUser({ userId, limit = 6, page }: GetLoadoutsByUserParams) {
+// GET LOADOUTS BY CREATOR
+export async function getLoadoutByUser({ userId, limit = 6, page }: GetLoadoutsByUserParams) {
     try {
         await connectToDatabase()
 
-        const conditions = { organizer: userId }
+        const conditions = { creator: userId }
         const skipAmount = (page - 1) * limit
 
         const loadoutQuery = Loadout.find(conditions)
@@ -130,7 +132,7 @@ export async function getEventsByUser({ userId, limit = 6, page }: GetLoadoutsBy
             .skip(skipAmount)
             .limit(limit)
 
-        const loadout = await populateEvent(loadoutQuery)
+        const loadout = await populateLoadout(loadoutQuery)
         const loadoutCount = await Loadout.countDocuments(conditions)
 
         return { data: JSON.parse(JSON.stringify(loadout)), totalPages: Math.ceil(loadoutCount / limit) }
@@ -139,8 +141,8 @@ export async function getEventsByUser({ userId, limit = 6, page }: GetLoadoutsBy
     }
 }
 
-// GET RELATED EVENTS: EVENTS WITH SAME CATEGORY
-export async function getRelatedEventsByCategory({
+// GET RELATED LOADOUTS: LOADOUTS WITH SAME CATEGORY
+export async function getRelatedLoadoutByCategory({
     categoryId,
     loadoutId,
     limit = 3,
@@ -157,7 +159,7 @@ export async function getRelatedEventsByCategory({
             .skip(skipAmount)
             .limit(limit)
 
-        const loadout = await populateEvent(eventsQuery)
+        const loadout = await populateLoadout(eventsQuery)
         const loadoutCount = await Loadout.countDocuments(conditions)
 
         return { data: JSON.parse(JSON.stringify(loadout)), totalPages: Math.ceil(loadoutCount / limit) }

@@ -1,10 +1,12 @@
-"use client"
-
 import LoadoutForm from "@/components/shared/LoadoutForm"
+import { auth } from "@clerk/nextjs"
 
 
 
 const CreatePage = () => {
+    const { sessionClaims } = auth();
+
+    const userId = sessionClaims?.userId as string;
 
     return (
         <main>
@@ -12,7 +14,7 @@ const CreatePage = () => {
                 <p className="text-2xl text-center font-semibold"> Build Your Loadout</p>
             </section>
             <section>
-                <LoadoutForm />
+                <LoadoutForm userId={userId} type='Create' />
             </section>
         </main>
     )
