@@ -46,6 +46,7 @@ import { ILoadout } from "@/lib/database/models/loadout.model"
 import { useUploadThing } from "@/lib/uploadthing"
 import { useRouter } from "next/navigation"
 import { createLoadout, updateLoadout } from "@/lib/actions/loadout.actions"
+import Dropdown from "../Dropdown"
 
 type LoadoutFormProps = {
     userId: string;
@@ -112,12 +113,7 @@ const loadoutDefaultValues = {
 
 const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => {
     const [files, setFiles] = useState<File[]>([])
-    const initialValues =
-        loadout && type === "Update"
-            ? {
-                ...loadout
-            } :
-            loadoutDefaultValues;
+    const initialValues = loadoutDefaultValues
 
     const router = useRouter();
 
@@ -214,21 +210,10 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
                             name="categoryId"
                             render={({ field }) => (
                                 <FormItem>
-                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                        <FormControl>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Weapon Category" />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent>
-                                            <SelectItem value="Assault Rifles">Assault Rifles</SelectItem>
-                                            <SelectItem value="Submachine Guns">Submachine Guns</SelectItem>
-                                            <SelectItem value="Light Machine Guns">Light Machine Guns</SelectItem>
-                                            <SelectItem value="Sniper Rifles">Sniper Rifles</SelectItem>
-                                            <SelectItem value="Shotguns">Shotguns</SelectItem>
-                                            <SelectItem value="Pistols">Pistols</SelectItem>
-                                        </SelectContent>
-                                    </Select>
+                                    <Dropdown
+                                        onChangeHandler={field.onChange}
+                                        value={field.value}
+                                    />
                                     <FormMessage />
                                 </FormItem>
                             )}

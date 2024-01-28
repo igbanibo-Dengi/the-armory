@@ -7,11 +7,15 @@ import Loadout from '@/lib/database/models/loadout.model'
 import User from '@/lib/database/models/user.model'
 import Category from '@/lib/database/models/category.model'
 import { handleError } from '@/lib/utils'
-import { CreateLoadoutParams, DeleteLoadoutParams, GetAllLoadoutsParams, GetLoadoutsByUserParams, GetRelatedLoadoutsByCategoryParams, UpdateLoadoutParams } from '@/types'
 
-
-
-
+import {
+    CreateLoadoutParams,
+    DeleteLoadoutParams,
+    GetAllLoadoutsParams,
+    GetLoadoutsByUserParams,
+    GetRelatedLoadoutsByCategoryParams,
+    UpdateLoadoutParams
+} from '@/types'
 
 const getCategoryByName = async (name: string) => {
     return Category.findOne({ name: { $regex: name, $options: 'i' } })
@@ -29,6 +33,7 @@ export async function createLoadout({ userId, loadout, path }: CreateLoadoutPara
         await connectToDatabase()
 
         const creator = await User.findById(userId)
+        console.log(userId)
         if (!creator) throw new Error('Creator not found')
 
         const newLoadout = await Loadout.create({ ...loadout, category: loadout.categoryId, creator: userId })

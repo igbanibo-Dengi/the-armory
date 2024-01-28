@@ -8,6 +8,9 @@ const CreatePage = () => {
 
     const userId = sessionClaims?.userId as string;
 
+    console.log(userId);
+
+
     return (
         <main>
             <section className="container mt-20">
