@@ -28,6 +28,11 @@ export type CreateLoadoutParams = {
         thirdAttachment: string
         fourthAttachment: string
         fifthAttachment: string
+        firstSlot: string,
+        secondSlot: string,
+        thirdSlot: string,
+        fourthSlot: string,
+        fifthSlot: string,
         imageUrl: string
         categoryId: string
     }
@@ -47,6 +52,11 @@ export type UpdateLoadoutParams = {
         thirdAttachment: string
         fourthAttachment: string
         fifthAttachment: string
+        firstSlot: string,
+        secondSlot: string,
+        thirdSlot: string,
+        fourthSlot: string,
+        fifthSlot: string,
         imageUrl: string
         categoryId: string
     }
@@ -89,6 +99,11 @@ export type loadout = {
     thirdAttachment: string
     fourthAttachment: string
     fifthAttachment: string
+    firstSlot: string,
+    secondSlot: string,
+    thirdSlot: string,
+    fourthSlot: string,
+    fifthSlot: string,
     imageUrl: string
     categoryId: string
     creator: {

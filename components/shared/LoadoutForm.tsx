@@ -69,6 +69,25 @@ const FormSchema = z.object({
         message: "Please select a game mode.",
     }),
     description: z.string().min(3, 'Description must be at least 3 characters').max(400, 'Description must be less than 400 characters'),
+
+    // SLOTS
+    firstSlot: z.string().min(1, {
+        message: "Please select an attachment.",
+    }),
+    secondSlot: z.string().min(1, {
+        message: "Please select an attachment.",
+    }),
+    thirdSlot: z.string().min(1, {
+        message: "Please select an attachment.",
+    }),
+    fourthSlot: z.string().min(1, {
+        message: "Please select an attachment.",
+    }),
+    fifthSlot: z.string().min(1, {
+        message: "Please select an attachment.",
+    }),
+
+    // Attachments
     firstAttachment: z.string().min(1, {
         message: "Please select an attachment.",
     }),
@@ -84,6 +103,8 @@ const FormSchema = z.object({
     fifthAttachment: z.string().min(1, {
         message: "Please select an attachment.",
     }),
+
+    // ============================================
     imageUrl: z.string().min(2, {
         message: "cannot be empty.",
     }),
@@ -98,11 +119,19 @@ const loadoutDefaultValues = {
     gameMode: '',
     description: '',
     imageUrl: '',
+    // ATTACHMENTS
     firstAttachment: '',
     secondAttachment: '',
     thirdAttachment: '',
     fourthAttachment: '',
     fifthAttachment: '',
+    // SLOTS
+    firstSlot: '',
+    secondSlot: '',
+    thirdSlot: '',
+    fourthSlot: '',
+    fifthSlot: '',
+    // ==================
     categoryId: '',
 }
 
@@ -322,320 +351,489 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
                             )}
                         />
 
-                        <FormField
-                            control={form.control}
-                            name="firstAttachment"
-                            render={({ field }) => (
-                                <FormItem className="flex flex-col">
-                                    <Popover>
-                                        <PopoverTrigger asChild>
-                                            <FormControl>
-                                                <Button
-                                                    variant="outline"
-                                                    role="combobox"
-                                                    className={cn(
-                                                        "justify-between",
-                                                        !field.value && "text-muted-foreground"
-                                                    )}
-                                                >
-                                                    {field.value
-                                                        ? firstAttachments.find(
-                                                            (attachment) => attachment.value === field.value
-                                                        )?.label
-                                                        : "Select first attachment"}
-                                                    <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                </Button>
-                                            </FormControl>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-[200px] p-0">
-                                            <Command>
-                                                <CommandInput
-                                                    placeholder="Search..."
-                                                    className="h-9"
-                                                />
-                                                <CommandEmpty>No attachment found.</CommandEmpty>
-                                                <CommandGroup>
-                                                    <ScrollArea className="h-[200px] w-[200px]">
-                                                        {firstAttachments.map((attachment) => (
-                                                            <CommandItem
-                                                                value={attachment.label}
-                                                                key={attachment.value}
-                                                                onSelect={() => {
-                                                                    form.setValue("firstAttachment", attachment.value)
-                                                                }}
-                                                            >
-                                                                {attachment.label}
-                                                                <Check
-                                                                    className={cn(
-                                                                        "ml-auto h-4 w-4",
-                                                                        attachment.value === field.value
-                                                                            ? "opacity-100"
-                                                                            : "opacity-0"
-                                                                    )}
-                                                                />
-                                                            </CommandItem>
-                                                        ))}
-                                                    </ScrollArea>
-                                                </CommandGroup>
-                                            </Command>
-                                        </PopoverContent>
-                                    </Popover>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
 
-                        <FormField
-                            control={form.control}
-                            name="secondAttachment"
-                            render={({ field }) => (
-                                <FormItem className="flex flex-col">
-                                    <Popover>
-                                        <PopoverTrigger asChild>
-                                            <FormControl>
-                                                <Button
-                                                    variant="outline"
-                                                    role="combobox"
-                                                    className={cn(
-                                                        "justify-between",
-                                                        !field.value && "text-muted-foreground"
-                                                    )}
-                                                >
-                                                    {field.value
-                                                        ? secondAttachments.find(
-                                                            (attachment) => attachment.value === field.value
-                                                        )?.label
-                                                        : "Select second attachment"}
-                                                    <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                </Button>
-                                            </FormControl>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-[200px] p-0">
-                                            <Command>
-                                                <CommandInput
-                                                    placeholder="Search..."
-                                                    className="h-9"
-                                                />
-                                                <CommandEmpty>No attachment found.</CommandEmpty>
-                                                <CommandGroup>
-                                                    <ScrollArea className="h-[200px] w-[200px]">
-                                                        {secondAttachments.map((attachment) => (
-                                                            <CommandItem
-                                                                value={attachment.label}
-                                                                key={attachment.value}
-                                                                onSelect={() => {
-                                                                    form.setValue("secondAttachment", attachment.value)
-                                                                }}
-                                                            >
-                                                                {attachment.label}
-                                                                <Check
-                                                                    className={cn(
-                                                                        "ml-auto h-4 w-4",
-                                                                        attachment.value === field.value
-                                                                            ? "opacity-100"
-                                                                            : "opacity-0"
-                                                                    )}
-                                                                />
-                                                            </CommandItem>
-                                                        ))}
-                                                    </ScrollArea>
-                                                </CommandGroup>
-                                            </Command>
-                                        </PopoverContent>
-                                    </Popover>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                        <div className="grid grid-cols-2 gap-4">
 
-                        <FormField
-                            control={form.control}
-                            name="thirdAttachment"
-                            render={({ field }) => (
-                                <FormItem className="flex flex-col">
-                                    <Popover>
-                                        <PopoverTrigger asChild>
-                                            <FormControl>
-                                                <Button
-                                                    variant="outline"
-                                                    role="combobox"
-                                                    className={cn(
-                                                        "justify-between",
-                                                        !field.value && "text-muted-foreground"
-                                                    )}
-                                                >
-                                                    {field.value
-                                                        ? thirdAttachments.find(
-                                                            (attachment) => attachment.value === field.value
-                                                        )?.label
-                                                        : "Select third attachment"}
-                                                    <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                </Button>
-                                            </FormControl>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-[200px] p-0">
-                                            <Command>
-                                                <CommandInput
-                                                    placeholder="Search..."
-                                                    className="h-9"
-                                                />
-                                                <CommandEmpty>No attachment found.</CommandEmpty>
-                                                <CommandGroup>
-                                                    <ScrollArea className="h-[200px] w-[200px]">
-                                                        {thirdAttachments.map((attachment) => (
-                                                            <CommandItem
-                                                                value={attachment.label}
-                                                                key={attachment.value}
-                                                                onSelect={() => {
-                                                                    form.setValue("thirdAttachment", attachment.value)
-                                                                }}
-                                                            >
-                                                                {attachment.label}
-                                                                <Check
-                                                                    className={cn(
-                                                                        "ml-auto h-4 w-4",
-                                                                        attachment.value === field.value
-                                                                            ? "opacity-100"
-                                                                            : "opacity-0"
-                                                                    )}
-                                                                />
-                                                            </CommandItem>
-                                                        ))}
-                                                    </ScrollArea>
-                                                </CommandGroup>
-                                            </Command>
-                                        </PopoverContent>
-                                    </Popover>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
 
-                        <FormField
-                            control={form.control}
-                            name="fourthAttachment"
-                            render={({ field }) => (
-                                <FormItem className="flex flex-col">
-                                    <Popover>
-                                        <PopoverTrigger asChild>
-                                            <FormControl>
-                                                <Button
-                                                    variant="outline"
-                                                    role="combobox"
-                                                    className={cn(
-                                                        "justify-between",
-                                                        !field.value && "text-muted-foreground"
-                                                    )}
-                                                >
-                                                    {field.value
-                                                        ? fourthAttachments.find(
-                                                            (attachment) => attachment.value === field.value
-                                                        )?.label
-                                                        : "Select fourth attachment"}
-                                                    <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                </Button>
-                                            </FormControl>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-[200px] p-0">
-                                            <Command>
-                                                <CommandInput
-                                                    placeholder="Search..."
-                                                    className="h-9"
-                                                />
-                                                <CommandEmpty>No attachment found.</CommandEmpty>
-                                                <CommandGroup>
-                                                    <ScrollArea className="h-[200px] w-[200px]">
-                                                        {fourthAttachments.map((attachment) => (
-                                                            <CommandItem
-                                                                value={attachment.label}
-                                                                key={attachment.value}
-                                                                onSelect={() => {
-                                                                    form.setValue("fourthAttachment", attachment.value)
-                                                                }}
-                                                            >
-                                                                {attachment.label}
-                                                                <Check
-                                                                    className={cn(
-                                                                        "ml-auto h-4 w-4",
-                                                                        attachment.value === field.value
-                                                                            ? "opacity-100"
-                                                                            : "opacity-0"
-                                                                    )}
-                                                                />
-                                                            </CommandItem>
-                                                        ))}
-                                                    </ScrollArea>
-                                                </CommandGroup>
-                                            </Command>
-                                        </PopoverContent>
-                                    </Popover>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
 
-                        <FormField
-                            control={form.control}
-                            name="fifthAttachment"
-                            render={({ field }) => (
-                                <FormItem className="flex flex-col">
-                                    <Popover>
-                                        <PopoverTrigger asChild>
+                            <FormField
+                                control={form.control}
+                                name="firstSlot"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
                                             <FormControl>
-                                                <Button
-                                                    variant="outline"
-                                                    role="combobox"
-                                                    className={cn(
-                                                        "justify-between",
-                                                        !field.value && "text-muted-foreground"
-                                                    )}
-                                                >
-                                                    {field.value
-                                                        ? fifthAttachments.find(
-                                                            (attachment) => attachment.value === field.value
-                                                        )?.label
-                                                        : "Select fifth attachment"}
-                                                    <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                </Button>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Slot 1" />
+                                                </SelectTrigger>
                                             </FormControl>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-[200px] p-0">
-                                            <Command>
-                                                <CommandInput
-                                                    placeholder="Search..."
-                                                    className="h-9"
-                                                />
-                                                <CommandEmpty>No attachment found.</CommandEmpty>
-                                                <CommandGroup>
-                                                    <ScrollArea className="h-[200px] w-[200px]">
-                                                        {fifthAttachments.map((attachment) => (
-                                                            <CommandItem
-                                                                value={attachment.label}
-                                                                key={attachment.value}
-                                                                onSelect={() => {
-                                                                    form.setValue("fifthAttachment", attachment.value)
-                                                                }}
-                                                            >
-                                                                {attachment.label}
-                                                                <Check
-                                                                    className={cn(
-                                                                        "ml-auto h-4 w-4",
-                                                                        attachment.value === field.value
-                                                                            ? "opacity-100"
-                                                                            : "opacity-0"
-                                                                    )}
-                                                                />
-                                                            </CommandItem>
-                                                        ))}
-                                                    </ScrollArea>
-                                                </CommandGroup>
-                                            </Command>
-                                        </PopoverContent>
-                                    </Popover>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                                            <SelectContent>
+                                                <SelectItem value="Muzzle">Laser</SelectItem>
+                                                <SelectItem value="Barrell">Barrell</SelectItem>
+                                                <SelectItem value="Optic">Optic</SelectItem>
+                                                <SelectItem value="UnderBarrel">UnderBarrel</SelectItem>
+                                                <SelectItem value="Laser">Laser</SelectItem>
+                                                <SelectItem value="Ammunition">Ammunition</SelectItem>
+                                                <SelectItem value="RearGrip">RearGrip</SelectItem>
+                                                <SelectItem value="Stock">Stock</SelectItem>
+                                                <SelectItem value="Perk">Perk</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+
+
+                            <FormField
+                                control={form.control}
+                                name="firstAttachment"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn(
+                                                            "justify-between",
+                                                            !field.value && "text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        {field.value
+                                                            ? firstAttachments.find(
+                                                                (attachment) => attachment.value === field.value
+                                                            )?.label
+                                                            : "select attachment"}
+                                                        <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-[200px] p-0">
+                                                <Command>
+                                                    <CommandInput
+                                                        placeholder="Search..."
+                                                        className="h-9"
+                                                    />
+                                                    <CommandEmpty>No attachment found.</CommandEmpty>
+                                                    <CommandGroup>
+                                                        <ScrollArea className="h-[200px] w-[200px]">
+                                                            {firstAttachments.map((attachment) => (
+                                                                <CommandItem
+                                                                    value={attachment.label}
+                                                                    key={attachment.value}
+                                                                    onSelect={() => {
+                                                                        form.setValue("firstAttachment", attachment.value)
+                                                                    }}
+                                                                >
+                                                                    {attachment.label}
+                                                                    <Check
+                                                                        className={cn(
+                                                                            "ml-auto h-4 w-4",
+                                                                            attachment.value === field.value
+                                                                                ? "opacity-100"
+                                                                                : "opacity-0"
+                                                                        )}
+                                                                    />
+                                                                </CommandItem>
+                                                            ))}
+                                                        </ScrollArea>
+                                                    </CommandGroup>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+
+
+
+                            <FormField
+                                control={form.control}
+                                name="secondSlot"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Slot 2" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="Muzzle">Laser</SelectItem>
+                                                <SelectItem value="Barrell">Barrell</SelectItem>
+                                                <SelectItem value="Optic">Optic</SelectItem>
+                                                <SelectItem value="UnderBarrel">UnderBarrel</SelectItem>
+                                                <SelectItem value="Laser">Laser</SelectItem>
+                                                <SelectItem value="Ammunition">Ammunition</SelectItem>
+                                                <SelectItem value="RearGrip">RearGrip</SelectItem>
+                                                <SelectItem value="Stock">Stock</SelectItem>
+                                                <SelectItem value="Perk">Perk</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+
+
+                            <FormField
+                                control={form.control}
+                                name="secondAttachment"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn(
+                                                            "justify-between",
+                                                            !field.value && "text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        {field.value
+                                                            ? secondAttachments.find(
+                                                                (attachment) => attachment.value === field.value
+                                                            )?.label
+                                                            : "select attachment"}
+                                                        <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-[200px] p-0">
+                                                <Command>
+                                                    <CommandInput
+                                                        placeholder="Search..."
+                                                        className="h-9"
+                                                    />
+                                                    <CommandEmpty>No attachment found.</CommandEmpty>
+                                                    <CommandGroup>
+                                                        <ScrollArea className="h-[200px] w-[200px]">
+                                                            {secondAttachments.map((attachment) => (
+                                                                <CommandItem
+                                                                    value={attachment.label}
+                                                                    key={attachment.value}
+                                                                    onSelect={() => {
+                                                                        form.setValue("secondAttachment", attachment.value)
+                                                                    }}
+                                                                >
+                                                                    {attachment.label}
+                                                                    <Check
+                                                                        className={cn(
+                                                                            "ml-auto h-4 w-4",
+                                                                            attachment.value === field.value
+                                                                                ? "opacity-100"
+                                                                                : "opacity-0"
+                                                                        )}
+                                                                    />
+                                                                </CommandItem>
+                                                            ))}
+                                                        </ScrollArea>
+                                                    </CommandGroup>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+
+
+
+                            <FormField
+                                control={form.control}
+                                name="thirdSlot"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Slot 3" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="Muzzle">Laser</SelectItem>
+                                                <SelectItem value="Barrell">Barrell</SelectItem>
+                                                <SelectItem value="Optic">Optic</SelectItem>
+                                                <SelectItem value="UnderBarrel">UnderBarrel</SelectItem>
+                                                <SelectItem value="Laser">Laser</SelectItem>
+                                                <SelectItem value="Ammunition">Ammunition</SelectItem>
+                                                <SelectItem value="RearGrip">RearGrip</SelectItem>
+                                                <SelectItem value="Stock">Stock</SelectItem>
+                                                <SelectItem value="Perk">Perk</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+
+
+                            <FormField
+                                control={form.control}
+                                name="thirdAttachment"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn(
+                                                            "justify-between",
+                                                            !field.value && "text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        {field.value
+                                                            ? thirdAttachments.find(
+                                                                (attachment) => attachment.value === field.value
+                                                            )?.label
+                                                            : "select attachment"}
+                                                        <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-[200px] p-0">
+                                                <Command>
+                                                    <CommandInput
+                                                        placeholder="Search..."
+                                                        className="h-9"
+                                                    />
+                                                    <CommandEmpty>No attachment found.</CommandEmpty>
+                                                    <CommandGroup>
+                                                        <ScrollArea className="h-[200px] w-[200px]">
+                                                            {thirdAttachments.map((attachment) => (
+                                                                <CommandItem
+                                                                    value={attachment.label}
+                                                                    key={attachment.value}
+                                                                    onSelect={() => {
+                                                                        form.setValue("thirdAttachment", attachment.value)
+                                                                    }}
+                                                                >
+                                                                    {attachment.label}
+                                                                    <Check
+                                                                        className={cn(
+                                                                            "ml-auto h-4 w-4",
+                                                                            attachment.value === field.value
+                                                                                ? "opacity-100"
+                                                                                : "opacity-0"
+                                                                        )}
+                                                                    />
+                                                                </CommandItem>
+                                                            ))}
+                                                        </ScrollArea>
+                                                    </CommandGroup>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+
+
+
+                            <FormField
+                                control={form.control}
+                                name="fourthSlot"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Slot 4" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="Muzzle">Muzzle</SelectItem>
+                                                <SelectItem value="Barrell">Barrell</SelectItem>
+                                                <SelectItem value="Optic">Optic</SelectItem>
+                                                <SelectItem value="UnderBarrel">UnderBarrel</SelectItem>
+                                                <SelectItem value="Laser">Laser</SelectItem>
+                                                <SelectItem value="Ammunition">Ammunition</SelectItem>
+                                                <SelectItem value="RearGrip">RearGrip</SelectItem>
+                                                <SelectItem value="Stock">Stock</SelectItem>
+                                                <SelectItem value="Perk">Perk</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+
+
+                            <FormField
+                                control={form.control}
+                                name="fourthAttachment"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn(
+                                                            "justify-between",
+                                                            !field.value && "text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        {field.value
+                                                            ? fourthAttachments.find(
+                                                                (attachment) => attachment.value === field.value
+                                                            )?.label
+                                                            : "select attachment"}
+                                                        <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-[200px] p-0">
+                                                <Command>
+                                                    <CommandInput
+                                                        placeholder="Search..."
+                                                        className="h-9"
+                                                    />
+                                                    <CommandEmpty>No attachment found.</CommandEmpty>
+                                                    <CommandGroup>
+                                                        <ScrollArea className="h-[200px] w-[200px]">
+                                                            {fourthAttachments.map((attachment) => (
+                                                                <CommandItem
+                                                                    value={attachment.label}
+                                                                    key={attachment.value}
+                                                                    onSelect={() => {
+                                                                        form.setValue("fourthAttachment", attachment.value)
+                                                                    }}
+                                                                >
+                                                                    {attachment.label}
+                                                                    <Check
+                                                                        className={cn(
+                                                                            "ml-auto h-4 w-4",
+                                                                            attachment.value === field.value
+                                                                                ? "opacity-100"
+                                                                                : "opacity-0"
+                                                                        )}
+                                                                    />
+                                                                </CommandItem>
+                                                            ))}
+                                                        </ScrollArea>
+                                                    </CommandGroup>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+
+
+
+                            <FormField
+                                control={form.control}
+                                name="fifthSlot"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Slot 5" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="Muzzle">Laser</SelectItem>
+                                                <SelectItem value="Barrell">Barrell</SelectItem>
+                                                <SelectItem value="Optic">Optic</SelectItem>
+                                                <SelectItem value="UnderBarrel">UnderBarrel</SelectItem>
+                                                <SelectItem value="Laser">Laser</SelectItem>
+                                                <SelectItem value="Ammunition">Ammunition</SelectItem>
+                                                <SelectItem value="RearGrip">RearGrip</SelectItem>
+                                                <SelectItem value="Stock">Stock</SelectItem>
+                                                <SelectItem value="Perk">Perk</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+
+
+                            <FormField
+                                control={form.control}
+                                name="fifthAttachment"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn(
+                                                            "justify-between",
+                                                            !field.value && "text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        {field.value
+                                                            ? fifthAttachments.find(
+                                                                (attachment) => attachment.value === field.value
+                                                            )?.label
+                                                            : "select attachment"}
+                                                        <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-[200px] p-0">
+                                                <Command>
+                                                    <CommandInput
+                                                        placeholder="Search..."
+                                                        className="h-9"
+                                                    />
+                                                    <CommandEmpty>No attachment found.</CommandEmpty>
+                                                    <CommandGroup>
+                                                        <ScrollArea className="h-[200px] w-[200px]">
+                                                            {fifthAttachments.map((attachment) => (
+                                                                <CommandItem
+                                                                    value={attachment.label}
+                                                                    key={attachment.value}
+                                                                    onSelect={() => {
+                                                                        form.setValue("fifthAttachment", attachment.value)
+                                                                    }}
+                                                                >
+                                                                    {attachment.label}
+                                                                    <Check
+                                                                        className={cn(
+                                                                            "ml-auto h-4 w-4",
+                                                                            attachment.value === field.value
+                                                                                ? "opacity-100"
+                                                                                : "opacity-0"
+                                                                        )}
+                                                                    />
+                                                                </CommandItem>
+                                                            ))}
+                                                        </ScrollArea>
+                                                    </CommandGroup>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
 
                         <FormField
                             control={form.control}

@@ -11,6 +11,11 @@ export interface ILoadout extends Document {
     thirdAttachment: string
     fourthAttachment: string
     fifthAttachment: string
+    firstSlot: string,
+    secondSlot: string,
+    thirdSlot: string,
+    fourthSlot: string,
+    fifthSlot: string,
     createdAt: Date;
     imageUrl: string;
     category: { _id: string, name: string }
@@ -27,6 +32,11 @@ const LoadoutSchema = new Schema({
     thirdAttachment: { type: String, required: true },
     fourthAttachment: { type: String, required: true },
     fifthAttachment: { type: String, required: true },
+    firstSlot: { type: String, required: true },
+    secondSlot: { type: String, required: true },
+    thirdSlot: { type: String, required: true },
+    fourthSlot: { type: String, required: true },
+    fifthSlot: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
     imageUrl: { type: String, required: true },
     category: { type: Schema.Types.ObjectId, ref: 'Category' },
