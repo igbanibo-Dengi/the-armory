@@ -33,7 +33,7 @@ export async function createLoadout({ userId, loadout, path }: CreateLoadoutPara
         await connectToDatabase()
 
         const creator = await User.findById(userId)
-        console.log(userId)
+        // console.log(userId)
         if (!creator) throw new Error('Creator not found')
 
         const newLoadout = await Loadout.create({ ...loadout, category: loadout.categoryId, creator: userId })
@@ -46,7 +46,7 @@ export async function createLoadout({ userId, loadout, path }: CreateLoadoutPara
 }
 
 // GET ONE LOADOUT BY ID
-export async function getId(eventId: string) {
+export async function getLoadoutId(eventId: string) {
     try {
         await connectToDatabase()
 

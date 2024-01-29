@@ -655,7 +655,14 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
                         />
 
 
-                        <Button type="submit">Submit</Button>
+                        <Button
+                            type="submit"
+                            size="lg"
+                            disabled={form.formState.isSubmitting}
+                            className="button col-span-2 w-full mt-10"
+                        >
+                            {form.formState.isSubmitting ? "Building..." : `${type} Loadout `}
+                        </Button>
                     </form>
                 </Form>
             </section>
