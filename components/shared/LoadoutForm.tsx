@@ -55,8 +55,6 @@ type LoadoutFormProps = {
     loadoutId?: string;
 }
 
-
-
 const FormSchema = z.object({
     title: z.string().min(2, {
         message: "title must be at least 2 characters.",
@@ -64,74 +62,67 @@ const FormSchema = z.object({
     weapon: z.string().min(1, {
         message: "Please select a weapon.",
     }),
-
     gameMode: z.string().min(2, {
         message: "Please select a game mode.",
     }),
-    description: z.string().min(3, 'Description must be at least 3 characters').max(400, 'Description must be less than 400 characters'),
-
-    // SLOTS
+    description: z.string().min(3, {
+        message: "Description must be at least 3 characters",
+    }).max(400, {
+        message: "Description must be less than 400 characters",
+    }),
     firstSlot: z.string().min(1, {
-        message: "Please select an attachment.",
+        message: "Required.",
     }),
     secondSlot: z.string().min(1, {
-        message: "Please select an attachment.",
+        message: "Required.",
     }),
     thirdSlot: z.string().min(1, {
-        message: "Please select an attachment.",
+        message: "Required.",
     }),
     fourthSlot: z.string().min(1, {
-        message: "Please select an attachment.",
+        message: "Required.",
     }),
     fifthSlot: z.string().min(1, {
-        message: "Please select an attachment.",
+        message: "Required.",
     }),
-
-    // Attachments
     firstAttachment: z.string().min(1, {
-        message: "Please select an attachment.",
+        message: "select an attachment",
     }),
     secondAttachment: z.string().min(1, {
-        message: "Please select an attachment.",
+        message: "select an attachment",
     }),
     thirdAttachment: z.string().min(1, {
-        message: "Please select an attachment.",
+        message: "select an attachment",
     }),
     fourthAttachment: z.string().min(1, {
-        message: "Please select an attachment.",
+        message: "select an attachment",
     }),
     fifthAttachment: z.string().min(1, {
-        message: "Please select an attachment.",
+        message: "select an attachment",
     }),
-
-    // ============================================
     imageUrl: z.string().min(2, {
         message: "cannot be empty.",
     }),
     categoryId: z.string().min(2, {
         message: "Please select a category.",
     }),
-})
-
+});
 const loadoutDefaultValues = {
     title: '',
     weapon: '',
     gameMode: '',
     description: '',
-    imageUrl: '',
-    // ATTACHMENTS
-    firstAttachment: '',
-    secondAttachment: '',
-    thirdAttachment: '',
-    fourthAttachment: '',
-    fifthAttachment: '',
-    // SLOTS
     firstSlot: '',
     secondSlot: '',
     thirdSlot: '',
     fourthSlot: '',
     fifthSlot: '',
-    // ==================
+    firstAttachment: '',
+    secondAttachment: '',
+    thirdAttachment: '',
+    fourthAttachment: '',
+    fifthAttachment: '',
+    imageUrl: '',
     categoryId: '',
 }
 
@@ -157,7 +148,7 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
 
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof FormSchema>) {
-        // console.log(values)
+        console.log(values)
 
         let uploadedImageUrl = values.imageUrl;
 
@@ -180,6 +171,9 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
                     userId,
                     path: "/profile"
                 })
+
+                console.log(newLoadout);
+
 
                 if (newLoadout) {
                     form.reset;

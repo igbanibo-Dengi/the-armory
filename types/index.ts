@@ -23,16 +23,16 @@ export type CreateLoadoutParams = {
         weapon: string
         gameMode: string
         description: string
-        firstAttachment: string
-        secondAttachment: string
-        thirdAttachment: string
-        fourthAttachment: string
-        fifthAttachment: string
         firstSlot: string,
         secondSlot: string,
         thirdSlot: string,
         fourthSlot: string,
         fifthSlot: string,
+        firstAttachment: string
+        secondAttachment: string
+        thirdAttachment: string
+        fourthAttachment: string
+        fifthAttachment: string
         imageUrl: string
         categoryId: string
     }
