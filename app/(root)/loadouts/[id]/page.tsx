@@ -9,7 +9,6 @@ import { Separator } from "@/components/ui/separator"
 const LoadoutDetails = async ({ params: { id }, searchParams }: SearchParamProps) => {
 
     const loadout = await getLoadoutId(id)
-    console.log(loadout);
 
     return (
         <>
