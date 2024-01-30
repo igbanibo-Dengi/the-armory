@@ -148,7 +148,7 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
 
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof FormSchema>) {
-        console.log(values)
+        // console.log(values)
 
         let uploadedImageUrl = values.imageUrl;
 
@@ -172,7 +172,7 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
                     path: "/profile"
                 })
 
-                console.log(newLoadout);
+                // console.log(newLoadout);
 
 
                 if (newLoadout) {
@@ -362,7 +362,7 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="Muzzle">Laser</SelectItem>
+                                                <SelectItem value="Muzzle">Muzzle</SelectItem>
                                                 <SelectItem value="Barrell">Barrell</SelectItem>
                                                 <SelectItem value="Optic">Optic</SelectItem>
                                                 <SelectItem value="UnderBarrel">UnderBarrel</SelectItem>
@@ -458,7 +458,7 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="Muzzle">Laser</SelectItem>
+                                                <SelectItem value="Muzzle">Muzzle</SelectItem>
                                                 <SelectItem value="Barrell">Barrell</SelectItem>
                                                 <SelectItem value="Optic">Optic</SelectItem>
                                                 <SelectItem value="UnderBarrel">UnderBarrel</SelectItem>
@@ -554,7 +554,7 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="Muzzle">Laser</SelectItem>
+                                                <SelectItem value="Muzzle">Muzzle</SelectItem>
                                                 <SelectItem value="Barrell">Barrell</SelectItem>
                                                 <SelectItem value="Optic">Optic</SelectItem>
                                                 <SelectItem value="UnderBarrel">UnderBarrel</SelectItem>
@@ -746,7 +746,7 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="Muzzle">Laser</SelectItem>
+                                                <SelectItem value="Muzzle">Muzzle</SelectItem>
                                                 <SelectItem value="Barrell">Barrell</SelectItem>
                                                 <SelectItem value="Optic">Optic</SelectItem>
                                                 <SelectItem value="UnderBarrel">UnderBarrel</SelectItem>
