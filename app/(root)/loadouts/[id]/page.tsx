@@ -10,6 +10,8 @@ const LoadoutDetails = async ({ params: { id }, searchParams }: SearchParamProps
 
     const loadout = await getLoadoutId(id)
 
+
+
     return (
         <>
             <div className='container pt-10 md:pt-20 max-w-6xl'>
@@ -24,7 +26,7 @@ const LoadoutDetails = async ({ params: { id }, searchParams }: SearchParamProps
                             className="h-full w-full rounded-md"
                         />
                     </div>
-                    <div className='md:w-[33%] w-full flex gap-4  border rounded-md bg-[#101012] p-5'>
+                    <div className='md:w-[33%] w-full flex gap-4  border rounded-md bg-black p-5'>
                         <div className='flex flex-col h-full justify-between w-full py-5 whitespace-nowrap'>
                             <p className='text-xl md:text-2xl font-bold capitalize mb-3'>{loadout.title}</p>
                             <Separator />
@@ -32,7 +34,7 @@ const LoadoutDetails = async ({ params: { id }, searchParams }: SearchParamProps
                                 <p className='flex justify-between items-center'><span className='text-primary'>Weapon</span> <span>{loadout.weapon}</span></p>
                                 <p className='flex justify-between items-center'><span className='text-primary'>Category</span> <span> {loadout.category.name}</span></p>
                                 <p className='flex justify-between items-center'><span className='text-primary'>Mode</span>  <span>{loadout.gameMode}</span></p>
-                                <p className='flex justify-between items-center'><span className='text-primary'>Creator</span>    <span>{loadout.creator.firstName}</span></p>
+                                <p className='flex justify-between items-center'><span className='text-primary'>Creator</span>    <span>{loadout.creator.username}</span></p>
                             </div>
 
 
@@ -41,7 +43,7 @@ const LoadoutDetails = async ({ params: { id }, searchParams }: SearchParamProps
                     </div>
                 </div>
                 <div className='flex flex-col  md:flex-row-reverse gap-5 md:gap-10 mt-5 md:mt-10 mb-10  justify-between'>
-                    <div className='md:w-[33%] w-full space-y-4 border rounded-md bg-[#101012] p-5'>
+                    <div className='md:w-[33%] w-full space-y-4 border rounded-md bg-black p-5'>
                         <h3 className="text-xl font-bold">Attachments</h3>
                         <Separator />
                         <div className=' w-full flex flex-col gap-4'>
@@ -77,7 +79,7 @@ const LoadoutDetails = async ({ params: { id }, searchParams }: SearchParamProps
                             </div>
                         </div >
                     </div>
-                    <div className='flex flex-col gap-4 justify-between md:w-[65%] w-full  border rounded-md bg-[#101012] p-5'>
+                    <div className='flex flex-col gap-4 justify-between md:w-[65%] w-full  border rounded-md bg-black p-5'>
                         <h3 className="text-xl font-bold">Description</h3>
                         <Separator />
                         <p className='mb-5 text-lg'>{loadout.description}</p>

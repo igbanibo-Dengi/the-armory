@@ -19,7 +19,7 @@ export interface ILoadout extends Document {
     createdAt: Date;
     imageUrl: string;
     category: { _id: string, name: string }
-    creator: { _id: string, firstName: string, lastName: string }
+    creator: { _id: string, firstName: string, lastName: string, username: string }
 }
 
 const LoadoutSchema = new Schema({

@@ -2,8 +2,25 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ceaser } from "../font";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import Collection from "@/components/shared/Collection";
+import { getAllLoaddouts } from "@/lib/actions/loadout.actions";
+import { SearchParamProps } from "@/types";
 
-export default function Home() {
+export default async function Home({ searchParams }: SearchParamProps) {
+
+  const page = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || "";
+  const category = (searchParams?.category as string) || "";
+
+  const loadout = await getAllLoaddouts({
+    query: searchText,
+    category,
+    page,
+    limit: 6,
+  });
+
+  // console.log(loadout);
+
   return (
     <main>
       <section
@@ -38,6 +55,17 @@ export default function Home() {
             </SignedOut>
           </div>
         </div>
+      </section>
+      <section className="container mt-20">
+        <Collection
+          data={loadout?.data}
+          emptyTitle="No loadout Found"
+          emptyStateSubtext="Try changing your search criteria"
+          collectionType="All_Loadouts"
+          limit={6}
+          page={1}
+          totalPages={loadout?.totalPages}
+        />
       </section>
     </main >
   );
