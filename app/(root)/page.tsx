@@ -41,7 +41,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
           </p>
           <div className="flex gap-3 mt-4">
             <Button asChild size="lg">
-              <Link href='/'>
+              <Link href='#explore'>
                 Explore
               </Link>
             </Button>
