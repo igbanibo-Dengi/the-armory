@@ -45,7 +45,7 @@ const Header = () => {
                     <SignedOut>
                         <Link href="/">Home</Link>
                     </SignedOut>
-                    <Link href="/">
+                    <Link href="#explore">
                         Explore
                     </Link>
                     <SignedIn>

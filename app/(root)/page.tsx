@@ -64,7 +64,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
       <section className="bg-[#080809] py-20 bg-center flex flex-col justify-center items-center min-h-screen">
         <Steps />
       </section>
-      <section className="  my-10 bg-[url('/hero6.jpg')] bg-fixed bg-center bg-no-repeat bg-contain min-h-[50vh] flex flex-col justify-end">
+      <section className="bg-[url('/hero6.jpg')] bg-fixed bg-center bg-no-repeat bg-contain h-[40vh] md:min-h-[50vh] flex flex-col justify-end">
         <></>
       </section>
 
@@ -73,7 +73,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
         <Terms />
       </section>
 
-      <section className="container my-20 pt-20">
+      <section id="explore" className="container my-10 md:my-20 pt-20">
         <Collection
           data={loadout?.data}
           emptyTitle="No loadout Found"
