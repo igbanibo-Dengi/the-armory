@@ -25,12 +25,22 @@ const MainCard = ({ loadout }: CardProps) => {
     // console.log(loadout);
 
     return (
-        <div className='rounded-md border-2 overflow-hidden w-full flex flex-col'>
-            {/* <Link
-                href={`/loadouts/${loadout._id}`}
+        <div className='rounded-md border-2 relative overflow-hidden flex min-h-[380px] w-full max-w-[400px] flex-col'>
+            {/* <div className='border-2 border-yellow-500 flex justify-center items-center w-[500px] overflow-hidden'>
+
+                <Image
+                    src={loadout.imageUrl}
+                    alt={loadout.title}
+                    width={500}
+                    height={500}
+                    className='rounded-md object-contain'
+                />
+            </div> */}
+            <Link
+                href={`/events/${loadout._id}`}
                 style={{ backgroundImage: `url(${loadout.imageUrl})` }}
-                className="flex-center flex-grow bg-gray-50 bg-cover text-grey-500"
-            /> */}
+                className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
+            />
 
             <Link href={`/loadouts/${loadout._id}`} className='p-4 space-y-4'>
                 <div className='flex justify-between'>
