@@ -25,7 +25,7 @@ const MainCard = ({ loadout }: CardProps) => {
     // console.log(loadout);
 
     return (
-        <div className='rounded-md border-2 relative overflow-hidden flex min-h-[380px] w-full max-w-[400px] flex-col'>
+        <div className='rounded-md border-2 relative overflow-hidden flex md:min-h-[380px] w-full max-w-[400px] flex-col'>
             {/* <div className='border-2 border-yellow-500 flex justify-center items-center w-[500px] overflow-hidden'>
 
                 <Image
@@ -39,13 +39,12 @@ const MainCard = ({ loadout }: CardProps) => {
             <Link
                 href={`/loadouts/${loadout._id}`}
                 style={{ backgroundImage: `url(${loadout.imageUrl})` }}
-                className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
+                className="flex-grow bg-gray-50 bg-cover bg-center text-grey-500 hidden md:flex"
             />
 
-            <Link href={`/loadouts/${loadout._id}`} className='p-4 space-y-4'>
+            <div className='p-4 space-y-4'>
                 <div className='flex justify-between'>
-                    <p
-                        className='text-lg hover:text-primary capitalize'>{loadout.title}</p>
+                    <Link href={`/loadouts/${loadout._id}`} className='text-lg capitalize hover:text-primary'>{loadout.title}</Link>
                     <Badge>{loadout.category.name}</Badge>
                 </div>
                 <div className='flex justify-between'>
@@ -53,8 +52,11 @@ const MainCard = ({ loadout }: CardProps) => {
                     <p>{loadout.gameMode}</p>
                 </div>
                 <Separator />
-                <p className='text-right'>By{" "}{loadout.creator.username}</p>
-            </Link>
+                <div className='flex justify-between'>
+                    <p >By{" "}{loadout.creator.username}</p>
+                    <Link href={`/loadouts/${loadout._id}`} className='underline hover:text-primary'>View</Link>
+                </div>
+            </div>
         </div>
     )
 }

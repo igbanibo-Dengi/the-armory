@@ -61,7 +61,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
         </div>
       </section>
 
-      <section className="bg-[#080809] py-20 bg-center flex flex-col justify-center items-center min-h-screen">
+      <section className=" py-20 bg-center flex flex-col justify-center items-center min-h-screen">
         <Steps />
       </section>
       <section className="bg-[url('/hero6.jpg')] bg-fixed bg-center bg-no-repeat bg-contain h-[40vh] md:min-h-[50vh] flex flex-col justify-end">
@@ -70,6 +70,9 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
       <section className="my-10 space-y-20">
         <Featured />
+        {/* <div className="bg-[url('/hero3.jpg')] bg-fixed bg-center bg-no-repeat bg-cover min-h-[200px] flex flex-col justify-end">
+          <></>
+        </div> */}
         <Terms />
       </section>
 
