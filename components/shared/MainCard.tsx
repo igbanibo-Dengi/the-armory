@@ -37,7 +37,7 @@ const MainCard = ({ loadout }: CardProps) => {
                 />
             </div> */}
             <Link
-                href={`/events/${loadout._id}`}
+                href={`/loadouts/${loadout._id}`}
                 style={{ backgroundImage: `url(${loadout.imageUrl})` }}
                 className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
             />
