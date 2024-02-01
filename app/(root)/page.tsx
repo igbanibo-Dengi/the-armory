@@ -73,7 +73,10 @@ export default async function Home({ searchParams }: SearchParamProps) {
         <Terms />
       </section>
 
-      <section id="explore" className="container my-10 md:my-20 pt-20">
+      <section id="explore" className="container mb-10 md:my-20 pt-20 flex flex-col gap-5">
+        <span className=" text-3xl text-center whitespace-nowrap lg:text-6xl mb-10">
+          <h3 className={ceaser.className}>Explore</h3>
+        </span>
         <Collection
           data={loadout?.data}
           emptyTitle="No loadout Found"

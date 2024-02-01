@@ -13,8 +13,8 @@ import { ceaser } from '@/app/font'
 
 const Featured = () => {
     return (
-        <div className='container max-w-[1200px]'>
-            <span className="p-3 text-3xl text-center  lg:text-6xl">
+        <div className='container max-w-[1200px] px-20 md:px-0'>
+            <span className=" text-3xl text-center whitespace-nowrap  lg:text-6xl">
                 <h3 className={ceaser.className}>Featured loadouts</h3>
             </span>
             <Carousel>
