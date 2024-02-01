@@ -108,8 +108,15 @@ export const firstAttachments = [
     { label: "Collapsible Stock", value: "Collapsible Stock" },
     { label: "Stippled Grip Tape", value: "Stippled Grip Tape" },
     { label: "Rubberized Grip Tape", value: "Rubberized Grip Tape" },
-    { label: "Tac Laser", value: "Tac Laser" },
-    { label: "5mW Laser", value: "5mW Laser" },
+    { label: "YKM Lightweight short", value: "YKM Lightweight short" },
+    { label: "YKM Light stock", value: "YKM Light stock" },
+    { label: "OWC Laser - Tactical", value: "OWC Laser - Tactical" },
+    { label: "FMJ", value: "FMJ" },
+
+
+
+
+
 ] as const
 
 export const secondAttachments = [
@@ -137,8 +144,15 @@ export const secondAttachments = [
     { label: "Collapsible Stock", value: "Collapsible Stock" },
     { label: "Stippled Grip Tape", value: "Stippled Grip Tape" },
     { label: "Rubberized Grip Tape", value: "Rubberized Grip Tape" },
-    { label: "Tac Laser", value: "Tac Laser" },
-    { label: "5mW Laser", value: "5mW Laser" },
+    { label: "YKM Lightweight short", value: "YKM Lightweight short" },
+    { label: "YKM Light stock", value: "YKM Light stock" },
+    { label: "OWC Laser - Tactical", value: "OWC Laser - Tactical" },
+    { label: "FMJ", value: "FMJ" },
+
+
+
+
+
 ] as const
 
 export const thirdAttachments = [
@@ -166,8 +180,15 @@ export const thirdAttachments = [
     { label: "Collapsible Stock", value: "Collapsible Stock" },
     { label: "Stippled Grip Tape", value: "Stippled Grip Tape" },
     { label: "Rubberized Grip Tape", value: "Rubberized Grip Tape" },
-    { label: "Tac Laser", value: "Tac Laser" },
-    { label: "5mW Laser", value: "5mW Laser" },
+    { label: "YKM Lightweight short", value: "YKM Lightweight short" },
+    { label: "YKM Light stock", value: "YKM Light stock" },
+    { label: "OWC Laser - Tactical", value: "OWC Laser - Tactical" },
+    { label: "FMJ", value: "FMJ" },
+
+
+
+
+
 ] as const
 
 export const fourthAttachments = [
@@ -195,8 +216,15 @@ export const fourthAttachments = [
     { label: "Collapsible Stock", value: "Collapsible Stock" },
     { label: "Stippled Grip Tape", value: "Stippled Grip Tape" },
     { label: "Rubberized Grip Tape", value: "Rubberized Grip Tape" },
-    { label: "Tac Laser", value: "Tac Laser" },
-    { label: "5mW Laser", value: "5mW Laser" },
+    { label: "YKM Lightweight short", value: "YKM Lightweight short" },
+    { label: "YKM Light stock", value: "YKM Light stock" },
+    { label: "OWC Laser - Tactical", value: "OWC Laser - Tactical" },
+    { label: "FMJ", value: "FMJ" },
+
+
+
+
+
 ] as const
 
 export const fifthAttachments = [
@@ -224,6 +252,12 @@ export const fifthAttachments = [
     { label: "Collapsible Stock", value: "Collapsible Stock" },
     { label: "Stippled Grip Tape", value: "Stippled Grip Tape" },
     { label: "Rubberized Grip Tape", value: "Rubberized Grip Tape" },
-    { label: "Tac Laser", value: "Tac Laser" },
-    { label: "5mW Laser", value: "5mW Laser" },
+    { label: "YKM Lightweight short", value: "YKM Lightweight short" },
+    { label: "YKM Light stock", value: "YKM Light stock" },
+    { label: "OWC Laser - Tactical", value: "OWC Laser - Tactical" },
+    { label: "FMJ", value: "FMJ" },
+
+
+
+
 ] as const

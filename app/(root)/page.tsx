@@ -5,6 +5,9 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Collection from "@/components/shared/Collection";
 import { getAllLoaddouts } from "@/lib/actions/loadout.actions";
 import { SearchParamProps } from "@/types";
+import Image from "next/image";
+import Steps from "@/components/steps";
+import Featured from "@/components/Featured";
 
 export default async function Home({ searchParams }: SearchParamProps) {
 
@@ -24,7 +27,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
   return (
     <main>
       <section
-        className="relative w-full h-screen bg-cover bg-center bg-[url('/hero1.jpg')]"
+        className="relative w-full h-screen bg-cover bg-center bg-[url('/hero1.jpg')] bg-fixed"
 
       >
         <div className="absolute inset-0 bg-black opacity-50" />
@@ -56,7 +59,22 @@ export default async function Home({ searchParams }: SearchParamProps) {
           </div>
         </div>
       </section>
-      <section className="container mt-20">
+
+      <section className="bg-[#080809] py-20 bg-center flex flex-col justify-center items-center min-h-screen">
+        <Steps />
+      </section>
+      <section className="  my-10 bg-[url('/hero6.jpg')] bg-fixed bg-center bg-no-repeat bg-contain min-h-screen flex flex-col justify-end">
+        <div className="container h-full text-center ">
+          <span className="text-6xl pt-10 pb-5 h-full">
+            <h3 className={ceaser.className}>Featured loadouts</h3>
+          </span>
+        </div>
+      </section>
+
+      <section className="my-10">
+        <Featured />
+      </section>
+      <section className="container my-20 pt-20">
         <Collection
           data={loadout?.data}
           emptyTitle="No loadout Found"
