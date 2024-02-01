@@ -8,6 +8,7 @@ import { SearchParamProps } from "@/types";
 import Image from "next/image";
 import Steps from "@/components/steps";
 import Featured from "@/components/Featured";
+import Terms from "@/components/Terms";
 
 export default async function Home({ searchParams }: SearchParamProps) {
 
@@ -63,17 +64,15 @@ export default async function Home({ searchParams }: SearchParamProps) {
       <section className="bg-[#080809] py-20 bg-center flex flex-col justify-center items-center min-h-screen">
         <Steps />
       </section>
-      <section className="  my-10 bg-[url('/hero6.jpg')] bg-fixed bg-center bg-no-repeat bg-contain min-h-screen flex flex-col justify-end">
-        <div className="container h-full text-center ">
-          <span className="text-6xl pt-10 pb-5 h-full">
-            <h3 className={ceaser.className}>Featured loadouts</h3>
-          </span>
-        </div>
+      <section className="  my-10 bg-[url('/hero6.jpg')] bg-fixed bg-center bg-no-repeat bg-contain min-h-[50vh] flex flex-col justify-end">
+        <></>
       </section>
 
-      <section className="my-10">
+      <section className="my-10 space-y-20">
         <Featured />
+        <Terms />
       </section>
+
       <section className="container my-20 pt-20">
         <Collection
           data={loadout?.data}

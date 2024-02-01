@@ -261,3 +261,62 @@ export const fifthAttachments = [
 
 
 ] as const
+
+
+
+
+export const termsData = [
+    {
+        "term": "ADS Time",
+        "explanation": "Aim Down Sight Time (ADS Time) refers to the duration it takes for a player to transition from a hip-fire stance to aiming down the sights of their weapon. A lower ADS time allows for quicker target acquisition and a faster response to potential threats."
+    },
+    {
+        term: "Damage Range",
+        explanation: "Damage Range is the effective distance over which a weapon inflicts its maximum damage. Beyond this range, the damage inflicted by the weapon gradually decreases, impacting its effectiveness in engagements at longer distances."
+    },
+    {
+        term: "Aiming Crosshair Drift",
+        explanation: "Aiming Crosshair Drift pertains to the subtle movement or sway of the aiming crosshair when a player is in the ADS mode. This phenomenon is particularly noticeable when using precision weapons like sniper rifles and can affect the accuracy of long-range shots."
+    },
+    {
+        term: "Lung Refresher",
+        explanation: "Lung Refresher, in the context of a game, is a term that suggests the existence of an in-game item, ability, or mechanic related to breath control or stamina. It may provide benefits such as improved breath-holding capabilities or enhanced stamina during certain actions."
+    },
+    {
+        term: "Vertical Recoil",
+        explanation: "Vertical Recoil refers to the upward movement of a weapon's aim when fired. Managing vertical recoil is essential for maintaining accuracy during sustained fire, and players often use attachments to mitigate this upward movement and improve overall weapon control."
+    },
+    {
+        term: "Horizontal Recoil",
+        explanation: "Horizontal Recoil is the side-to-side movement of a weapon's aim when fired. Controlling horizontal recoil is crucial for maintaining accuracy, as excessive side-to-side movement can make it challenging to consistently hit targets. Attachments are commonly used to mitigate horizontal recoil."
+    },
+    {
+        term: "Hit Flinch",
+        explanation: "Hit Flinch refers to the visual disruption or involuntary movement experienced by a player's character when taking damage. It can impact the player's ability to maintain aim on a target and is a key consideration in assessing the effectiveness of armor or defensive perks."
+    },
+    {
+        term: "ADS Movement Speed",
+        explanation: "ADS Movement Speed is the speed at which a player can move while aiming down the sights of their weapon. This attribute is influenced by the weapon type and specific attachments. Faster ADS movement speed allows for more agility during engagements while maintaining aim."
+    },
+    {
+        term: "Reload Time",
+        explanation: "Reload Time represents the duration it takes for a player to replenish ammunition in their weapon. Faster reload times are advantageous in combat situations, ensuring a quicker return to action and minimizing vulnerability during engagements."
+    },
+    {
+        term: "Fire Interval",
+        explanation: "Fire Interval is the time gap between consecutive shots fired from a weapon. It dictates the rate of fire and affects the overall damage output. Players often consider fire interval when selecting weapons for specific playstyles and combat scenarios."
+    },
+    {
+        term: "Movement Speed",
+        explanation: "Movement Speed refers to the speed at which a player's character can navigate the game environment. It plays a crucial role in positioning, flanking, and evading enemy fire. Different weapons and equipment may influence the overall movement speed of a player."
+    },
+    {
+        term: "Magazine Capacity",
+        explanation: "Magazine Capacity denotes the number of rounds a weapon's magazine can hold before requiring a reload. It directly impacts the frequency of reloads during engagements, affecting sustained fire and overall combat effectiveness."
+    },
+    {
+        term: "Body Part Damage Multiplier",
+        explanation: "Body Part Damage Multiplier indicates the factor by which damage is multiplied when hitting specific body parts such as the head, torso, or limbs. Headshots often have a higher multiplier, resulting in increased damage and providing an incentive for precision aiming."
+    }
+] as const
+
