@@ -41,7 +41,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
           </p>
           <div className="flex gap-3 mt-4">
             <Button asChild size="lg">
-              <Link href='#explore'>
+              <Link href='/explore'>
                 Explore
               </Link>
             </Button>
@@ -87,7 +87,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
           collectionType="All_Loadouts"
           limit={6}
           page={1}
-          totalPages={loadout?.totalPages}
+          totalPages={1}
         />
       </section>
     </main >
