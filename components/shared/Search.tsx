@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "../ui/input";
 import { SearchCheck } from "lucide-react";
 
-const Search = ({ placeholder = "Search Events...", }: { placeholder?: string }) => {
+const Search = ({ placeholder = "Search weapon name...", }: { placeholder?: string }) => {
     const [query, setQuery] = useState("");
     const router = useRouter();
     const searchParams = useSearchParams();

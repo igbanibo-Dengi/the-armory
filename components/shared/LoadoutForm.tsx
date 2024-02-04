@@ -133,7 +133,11 @@ const loadoutDefaultValues = {
 
 const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => {
     const [files, setFiles] = useState<File[]>([])
-    const initialValues = loadoutDefaultValues
+    const initialValues =
+        loadout && type === "Update"
+            ? {
+                ...loadout,
+            } : loadoutDefaultValues
 
     const router = useRouter();
 
@@ -198,7 +202,7 @@ const LoadoutForm = ({ userId, type, loadout, loadoutId }: LoadoutFormProps) => 
                 })
                 if (updatedLoadout) {
                     form.reset();
-                    router.push(`/laodouts/${updatedLoadout._id}`);
+                    router.push(`/loadouts/${updatedLoadout._id}`);
                 }
             } catch (error) {
                 console.log(error);
