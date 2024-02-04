@@ -1,7 +1,9 @@
 import Collection from '@/components/shared/Collection';
+import { Button } from '@/components/ui/button';
 import { getLoadoutByUser } from '@/lib/actions/loadout.actions';
 import { SearchParamProps } from '@/types'
 import { auth } from '@clerk/nextjs';
+import Link from 'next/link';
 import React from 'react'
 
 const ProfilePage = async ({ searchParams }: SearchParamProps) => {
@@ -15,6 +17,9 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
 
     return (
         <div className='pt-20'>
+            <section className='container my-8 flex justify-end border-b pb-4'>
+                <Button asChild><Link href="/loadouts/create">New Loadout</Link></Button>
+            </section>
             <section className="container my-8">
                 <Collection
                     data={loadouts?.data}

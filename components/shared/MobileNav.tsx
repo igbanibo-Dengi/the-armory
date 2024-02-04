@@ -29,7 +29,7 @@ const MobileNav = () => {
                         </Link>
                     </SignedIn>
                     <Separator />
-                    <Link href="#explore">
+                    <Link href="/explore">
                         Explore
                     </Link>
                     <Separator />
