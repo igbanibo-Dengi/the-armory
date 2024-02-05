@@ -140,7 +140,12 @@ export type SearchParamProps = {
 }
 
 
+// BOOKMARK PARAMS
 
+export type BookmarkLoadoutParams = {
+    loadoutId: string
+    // userId: string
+}
 
 
 

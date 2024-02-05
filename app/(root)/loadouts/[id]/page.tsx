@@ -1,4 +1,3 @@
-import { Badge } from '@/components/ui/badge'
 import { getLoadoutId } from '@/lib/actions/loadout.actions'
 import { SearchParamProps } from '@/types'
 import Image from 'next/image'
@@ -67,7 +66,7 @@ const LoadoutDetails = async ({ params: { id }, searchParams }: SearchParamProps
 
                                 {!isEventCreator && (
                                     <div className='flex justify-end'>
-                                        <Bookmark />
+                                        <Bookmark loadoutId={loadout._id} />
                                     </div>
                                 )}
                             </div>
