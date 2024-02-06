@@ -9,7 +9,7 @@ import Category from '@/lib/database/models/category.model'
 import { handleError } from '@/lib/utils'
 
 import {
-    BookmarkLoadoutParams,
+    // BookmarkLoadoutParams,
     CreateLoadoutParams,
     DeleteLoadoutParams,
     GetAllLoadoutsParams,
@@ -17,7 +17,7 @@ import {
     GetRelatedLoadoutsByCategoryParams,
     UpdateLoadoutParams
 } from '@/types'
-import Bookmark from '../database/models/bookmark.model'
+// import Bookmark from '../database/models/bookmark.model'
 
 const getCategoryByName = async (name: string) => {
     return Category.findOne({ name: { $regex: name, $options: 'i' } })
@@ -177,24 +177,24 @@ export async function getRelatedLoadoutByCategory({
 
 
 
-export async function bookmarkLoadout({ userId, loadoutId }: BookmarkLoadoutParams) {
+// export async function bookmarkLoadout({ userId, loadoutId }: BookmarkLoadoutParams) {
 
 
-    try {
+//     try {
 
-        await connectToDatabase()
-        // Create new bookmark
-        const bookmark = await Bookmark.create({
-            user: userId,
-            loadout: loadoutId
-        });
+//         await connectToDatabase()
+//         // Create new bookmark
+//         const bookmark = await Bookmark.create({
+//             user: userId,
+//             loadout: loadoutId
+//         });
 
-        return bookmark;
+//         return bookmark;
 
-    } catch (error) {
-        handleError(error);
-    }
+//     } catch (error) {
+//         handleError(error);
+//     }
 
 
 
-}
+// }
