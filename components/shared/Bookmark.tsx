@@ -1,11 +1,12 @@
 "use client"
 
-import React, { useTransition } from 'react'
+import React, { useState, useTransition } from 'react'
 import { Button } from '../ui/button'
 import { bookmarkLoadout } from '@/lib/actions/loadout.actions'
 
 const Bookmark = ({ loadoutId }: { loadoutId: string }) => {
     let [isPending, startTransition] = useTransition();
+    const [isBookmarked, setIsBookmarked] = useState(false)
 
 
 
@@ -15,11 +16,13 @@ const Bookmark = ({ loadoutId }: { loadoutId: string }) => {
                 onClick={() =>
                     startTransition(async () => {
                         await bookmarkLoadout({ loadoutId });
+                        setIsBookmarked(true);
                     })
                 }
 
+                disabled={isBookmarked}
             >
-                {isPending ? 'Bookmarking...' : 'Bookmark'}
+                {isPending ? 'Bookmarking...' : isBookmarked ? 'Bookmarked' : 'Bookmark'}
 
 
             </Button>
