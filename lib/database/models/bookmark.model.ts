@@ -2,6 +2,11 @@
 
 import { Schema, model, models } from 'mongoose';
 
+export type IBookmarks = {
+    user: string;
+    loadout: string;
+}
+
 const bookmarkSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
