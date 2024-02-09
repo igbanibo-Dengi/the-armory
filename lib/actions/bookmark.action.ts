@@ -1,6 +1,5 @@
 'use server'
 
-import { BookmarkLoadoutParams } from "@/types";
 import { connectToDatabase } from "../database";
 import Bookmark from "../database/models/bookmark.model";
 import { handleError } from "../utils";
@@ -28,7 +27,19 @@ export async function bookmarkLoadout({ userId, loadoutId }: { userId: string, l
     } catch (error) {
         handleError(error);
     }
-
-
-
 }
+
+// GET ONE LOADOUT BY ID
+// export async function getBookmarkId(eventId: string) {
+//     try {
+//         await connectToDatabase()
+
+//         const loadout = await populateLoadout(Loadout.findById(eventId))
+
+//         if (!loadout) throw new Error('Loadout not found')
+
+//         return JSON.parse(JSON.stringify(loadout))
+//     } catch (error) {
+//         handleError(error)
+//     }
+// }

@@ -8,6 +8,11 @@ const Bookmark = ({ loadoutId, userId }: { loadoutId: string, userId: string }) 
     let [isPending, startTransition] = useTransition()
     const [isBookmarked, setIsBookmarked] = useState(false)
 
+    console.log(userId);
+    console.log(loadoutId);
+
+
+
     const handleBookmark = async () => {
         startTransition(async () => {
             await bookmarkLoadout({ loadoutId, userId })
