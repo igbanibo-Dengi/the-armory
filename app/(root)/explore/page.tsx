@@ -24,7 +24,7 @@ const ExplorePage = async ({ searchParams }: SearchParamProps) => {
                 <h3 className='text-5xl font-bold capitalize text-center'>All Loadouts</h3>
             </section>
             <section className='mt-10'>
-                <div className='container'>
+                <div className='container pb-20'>
                     <div className='flex flex-col md:flex-row gap-4 justify-between items-center md:p-10 mb-10'>
                         <Search />
                         <CategoryFilter />

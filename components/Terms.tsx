@@ -19,7 +19,7 @@ const Terms = () => {
         Autoplay({ delay: 2000, stopOnInteraction: true })
     )
     return (
-        <div className='space-y-20 container px-20'>
+        <div className='space-y-20 container px-16'>
             <span className='p-3 text-3xl text-center  lg:text-6xl'>
                 <h3 className={ceaser.className}>Need to Know</h3>
             </span>

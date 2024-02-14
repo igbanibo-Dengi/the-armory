@@ -14,34 +14,33 @@ import { AlignJustify, LogOut } from 'lucide-react'
 const MobileNav = () => {
     return (
         <nav className='md:hidden'>
-
             <Sheet>
                 <SheetTrigger><AlignJustify /></SheetTrigger>
-                <SheetContent className='flex flex-col gap-4 pt-20 w-[200px] bg-black'>
+                <SheetContent className='flex flex-col pt-20 w-[200px] bg-black'>
                     <Separator />
-                    <Link href="/">
+                    <Link className='py-3' href="/">
                         Home
                     </Link>
                     <Separator />
                     <SignedIn>
-                        <Link href='/loadouts/create'>
+                        <Link className='py-3' href='/loadouts/create'>
                             Build
                         </Link>
                         <Separator />
                     </SignedIn>
-                    <Link href="/explore">
+                    <Link className='py-3' href="/explore">
                         Explore
                     </Link>
                     <Separator />
                     <SignedIn>
-                        <Link href="/profile">
+                        <Link className='py-3' href="/profile">
                             My Loadouts
                         </Link>
                         <Separator />
                     </SignedIn>
                     <SignedOut>
                         <Button asChild size="lg" className='w-fit'>
-                            <Link href="/sign-in">Login</Link>
+                            <Link className='py-3' href="/sign-in">Login</Link>
                         </Button>
                         <Separator />
                     </SignedOut>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Oswald } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark, neobrutalism } from '@clerk/themes';
+import { dark } from '@clerk/themes';
 
 const oswald = Oswald({ subsets: ["latin"] });
 

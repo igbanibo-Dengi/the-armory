@@ -5,7 +5,6 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Collection from "@/components/shared/Collection";
 import { getAllLoaddouts } from "@/lib/actions/loadout.actions";
 import { SearchParamProps } from "@/types";
-import Image from "next/image";
 import Steps from "@/components/steps";
 import Featured from "@/components/Featured";
 import Terms from "@/components/Terms";
@@ -70,16 +69,14 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
       <section className="my-10 space-y-20">
         <Featured />
-        {/* <div className="bg-[url('/hero3.jpg')] bg-fixed bg-center bg-no-repeat bg-cover min-h-[200px] flex flex-col justify-end">
-          <></>
-        </div> */}
         <Terms />
       </section>
 
-      <section id="explore" className="container mb-10 md:my-20 pt-20 flex flex-col gap-5">
-        <span className=" text-3xl text-center whitespace-nowrap lg:text-6xl mb-10">
+      <section id="explore" className="container mb-10 md:my-20 pt-20 flex flex-col">
+        <span className=" text-3xl text-center whitespace-nowrap lg:text-6xl">
           <h3 className={ceaser.className}>Explore</h3>
         </span>
+        <Link href='/explore' className="lg:hover:text-primary text-right underline pb-10">See all</Link>
         <Collection
           data={loadout?.data}
           emptyTitle="No loadout Found"
