@@ -3,7 +3,7 @@
 import { BookmarkLoadoutParams } from "@/types";
 import { connectToDatabase } from "../database";
 import Bookmark from "../database/models/bookmark.model";
-// import User from "../database/models/user.model";
+import User from "../database/models/user.model";
 import { handleError } from "../utils";
 import Loadout from "../database/models/loadout.model";
 
@@ -11,7 +11,6 @@ import Loadout from "../database/models/loadout.model";
 
 const populateBookmarks = (query: any) => {
     return query
-        // .populate({ path: 'creator', model: User, select: '_id firstName lastName username' })
         .populate({ path: 'loadout', model: Loadout })
 }
 

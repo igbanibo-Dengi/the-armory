@@ -1,4 +1,4 @@
-import Collection from '@/components/shared/Collection'
+import { ceaser } from '@/app/font'
 import { Button } from '@/components/ui/button'
 import { getBookmarksByUserId } from '@/lib/actions/bookmark.action'
 import { auth } from '@clerk/nextjs'
@@ -11,25 +11,47 @@ const page = async () => {
     const userId = sessionClaims?.userId as string;
 
     const bookmarked = await getBookmarksByUserId({ userId });
-    console.log(bookmarked);
+    // console.log(bookmarked);
 
 
     return (
         <div className="pt-20">
             <section className="container my-8 flex justify-between border-b pb-4 items-center">
+                <Link href="/profile" className="underline hover:text-primary">
+                    My Loadouts
+                </Link>
                 <Button asChild>
                     <Link href="/loadouts/create">New Loadout</Link>
                 </Button>
-                <Link href="/profile/saved" className="underline hover:text-primary">
-                    Saved Loadouts
-                </Link>
             </section>
             <section className="container my-8">
-                {bookmarked.map((bookmark: any) => {
-                    return <div key={bookmark.id}>{bookmark._id}
-                        <p>{bookmark.loadout.title}</p>
-                    </div>;
-                })}
+
+                <span className=" text-3xl text-center whitespace-nowrap lg:text-4xl py-10">
+                    <h3 className={ceaser.className}>Bookmarks</h3>
+                </span>
+
+                <div className=' grid grid-cols-1 md:grid-cols-3 gap-5'>
+                    {bookmarked.map((bookmark: any) => {
+                        return <div className='rounded-md border-2 relative overflow-hidden flex min-h-[380px] w-full max-w-[400px] flex-col'>
+                            <Link
+                                href={`/loadouts/${bookmark.loadout._id}`}
+                                style={{ backgroundImage: `url(${bookmark.loadout.imageUrl})` }}
+                                className="flex-grow bg-cover "
+                            />
+
+                            <div className='p-4 space-y-2 md:space-y-4'>
+                                <div className='flex justify-between'>
+                                    <Link href={`/loadouts/${bookmark.loadout._id}`} className='text-lg text-primary capitalize hover:text-primary'>{bookmark.loadout.weapon}</Link>
+                                </div>
+                                <div className='flex justify-between'>
+                                    <p>{bookmark.loadout.title}</p>
+                                    <p>{bookmark.loadout.gameMode}</p>
+                                </div>
+                            </div>
+                        </div>
+                    })}
+                </div>
+
             </section>
         </div>
     );

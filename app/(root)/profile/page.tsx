@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { getLoadoutByUser } from '@/lib/actions/loadout.actions';
 import { SearchParamProps } from '@/types'
 import { auth } from '@clerk/nextjs';
+import { Bookmark } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react'
 
@@ -19,7 +20,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
         <div className='pt-20'>
             <section className='container my-8 flex justify-between border-b pb-4 items-center'>
                 <Button asChild><Link href="/loadouts/create">New Loadout</Link></Button>
-                <Link href='/profile/saved' className='underline hover:text-primary'>Saved Loadouts</Link>
+                <Link href='/profile/saved' className='flex gap-2 items-center'>Bookmarks <Bookmark fill='white' /></Link>
             </section>
             <section className="container my-8">
                 <Collection
