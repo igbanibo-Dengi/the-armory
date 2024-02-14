@@ -22,6 +22,10 @@ export const Delete = ({ loadoutId }: { loadoutId: string }) => {
     const pathname = usePathname();
     let [isPending, startTransition] = useTransition();
 
+
+    console.log(loadoutId);
+
+
     const router = useRouter();
 
     return (

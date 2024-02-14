@@ -9,13 +9,13 @@ export type IBookmarks = {
 
 const bookmarkSchema = new Schema({
     user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        type: Schema.Types.ObjectId, ref: 'User'
     },
     loadout: {
-        type: Schema.Types.ObjectId,
-        ref: 'Loadout'
-    }
+        type: Schema.Types.ObjectId, ref: 'Loadout'
+    },
+    createdAt: { type: Date, default: Date.now },
+
 });
 
 const Bookmark = models.Bookmark || model('Bookmark', bookmarkSchema);

@@ -142,11 +142,36 @@ export type SearchParamProps = {
 
 // BOOKMARK PARAMS
 
-export type BookmarkLoadoutParams = {
-    loadoutId: string
-    userId: string
-}
+// export type BookmarkLoadoutParams = {
+//     loadoutId: string
+//     userId: string
 
+// }
+
+export type BookmarkLoadoutParams = {
+    userId: string
+    loadout: {
+        _id: any
+        title: string
+        weapon: string
+        gameMode: string
+        description: string
+        firstSlot: string,
+        secondSlot: string,
+        thirdSlot: string,
+        fourthSlot: string,
+        fifthSlot: string,
+        firstAttachment: string
+        secondAttachment: string
+        thirdAttachment: string
+        fourthAttachment: string
+        fifthAttachment: string
+        imageUrl: string
+        categoryId: string
+    }
+    bookmarked: any
+    // path: string
+}
 
 
 

@@ -1,16 +1,23 @@
 'use server'
 
+import { BookmarkLoadoutParams } from "@/types";
 import { connectToDatabase } from "../database";
 import Bookmark from "../database/models/bookmark.model";
+// import User from "../database/models/user.model";
 import { handleError } from "../utils";
+import Loadout from "../database/models/loadout.model";
 
 
 
-
+const populateBookmarks = (query: any) => {
+    return query
+        // .populate({ path: 'creator', model: User, select: '_id firstName lastName username' })
+        .populate({ path: 'loadout', model: Loadout })
+}
 
 // CREATE BOOKMARK
 
-export async function bookmarkLoadout({ userId, loadoutId }: { userId: string, loadoutId: string }) {
+export async function bookmarkLoadout({ userId, loadout }: BookmarkLoadoutParams) {
 
 
     try {
@@ -19,27 +26,31 @@ export async function bookmarkLoadout({ userId, loadoutId }: { userId: string, l
         // Create new bookmark
         const bookmark = await Bookmark.create({
             user: userId,
-            loadout: loadoutId
+            loadout
         });
 
-        return bookmark;
+        return JSON.parse(JSON.stringify(bookmark));
 
     } catch (error) {
         handleError(error);
     }
 }
 
-// GET ONE LOADOUT BY ID
-// export async function getBookmarkId(eventId: string) {
-//     try {
-//         await connectToDatabase()
 
-//         const loadout = await populateLoadout(Loadout.findById(eventId))
+export async function getBookmarksByUserId({ userId }: { userId: string }) {
+    try {
+        await connectToDatabase();
 
-//         if (!loadout) throw new Error('Loadout not found')
+        const bookmarks = await populateBookmarks(Bookmark.find({ user: userId }));
 
-//         return JSON.parse(JSON.stringify(loadout))
-//     } catch (error) {
-//         handleError(error)
-//     }
-// }
+        if (!bookmarks) throw new Error("No bookmarks found");
+
+        return JSON.parse(JSON.stringify(bookmarks));
+    } catch (error) {
+        handleError(error);
+    }
+}
+
+
+
+

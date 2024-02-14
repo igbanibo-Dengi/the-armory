@@ -27,8 +27,8 @@ const MobileNav = () => {
                         <Link href='/loadouts/create'>
                             Build
                         </Link>
+                        <Separator />
                     </SignedIn>
-                    <Separator />
                     <Link href="/explore">
                         Explore
                     </Link>
@@ -37,8 +37,8 @@ const MobileNav = () => {
                         <Link href="/profile">
                             My Loadouts
                         </Link>
+                        <Separator />
                     </SignedIn>
-                    <Separator />
                     <SignedOut>
                         <Button asChild size="lg" className='w-fit'>
                             <Link href="/sign-in">Login</Link>

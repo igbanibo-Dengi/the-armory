@@ -17,7 +17,6 @@ import {
     GetRelatedLoadoutsByCategoryParams,
     UpdateLoadoutParams
 } from '@/types'
-// import Bookmark from '../database/models/bookmark.model'
 
 const getCategoryByName = async (name: string) => {
     return Category.findOne({ name: { $regex: name, $options: 'i' } })
@@ -38,7 +37,11 @@ export async function createLoadout({ userId, loadout, path }: CreateLoadoutPara
         // console.log(userId)
         if (!creator) throw new Error('Creator not found')
 
-        const newLoadout = await Loadout.create({ ...loadout, category: loadout.categoryId, creator: userId })
+        const newLoadout = await Loadout.create({
+            ...loadout,
+            category: loadout.categoryId,
+            creator: userId
+        })
         revalidatePath(path)
 
         return JSON.parse(JSON.stringify(newLoadout))

@@ -11,7 +11,7 @@ type CollectionProps = {
     page: number | string;
     totalPages?: number;
     urlParamName?: string;
-    collectionType?: "My_loadouts" | "Bookmarked" | "All_Loadouts";
+    collectionType?: "My_loadouts" | "Saved" | "All_Loadouts";
 };
 
 const Collection = ({ data,
