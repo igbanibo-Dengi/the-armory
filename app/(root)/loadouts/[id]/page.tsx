@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator"
 import { SignedIn, auth } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Delete } from '@/components/shared/Delete';
-import Bookmark from '@/components/shared/Bookmark';
+import Bookmarking from '@/components/shared/Bookmark';
 import { getBookmarksByUserId } from '@/lib/actions/bookmark.action';
 
 
@@ -71,7 +71,7 @@ const LoadoutDetails = async ({ params: { id }, searchParams }: SearchParamProps
 
                                     {!isLoadoutCreator && (
                                         <div className='flex justify-end'>
-                                            <Bookmark loadout={loadout} userId={userId} bookmarked={bookmarked} />
+                                            <Bookmarking loadout={loadout} userId={userId} bookmarked={bookmarked} />
                                         </div>
                                     )}
                                 </SignedIn>

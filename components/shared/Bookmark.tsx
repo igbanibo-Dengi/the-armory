@@ -5,15 +5,12 @@ import { Button } from '../ui/button'
 import { bookmarkLoadout } from '@/lib/actions/bookmark.action'
 import { SignedIn } from '@clerk/nextjs'
 import { BookmarkLoadoutParams } from '@/types'
+import { Bookmark, Loader } from 'lucide-react';
 
-const Bookmark = ({ loadout, userId, bookmarked }: BookmarkLoadoutParams) => {
+
+const Bookmarking = ({ loadout, userId, bookmarked }: BookmarkLoadoutParams) => {
     let [isPending, startTransition] = useTransition();
     const [isBookmarked, setIsBookmarked] = useState(false);
-
-    console.log(loadout);
-
-
-    console.log(bookmarked);
 
     const saved = bookmarked.some((item: any) => item.loadout._id === loadout._id);
 
@@ -30,15 +27,19 @@ const Bookmark = ({ loadout, userId, bookmarked }: BookmarkLoadoutParams) => {
                 {saved ? (
                     <Button
                         disabled
+                        variant={'ghost'}
+                        className='disabled:cursor-not-allowed'
                     >
-                        Saved
+                        <Bookmark fill='white' />
                     </Button>
                 ) : (
                     <Button
                         onClick={handleBookmark}
                         disabled={isBookmarked}
+                        variant='ghost'
+                        className='disabled:cursor-not-allowed'
                     >
-                        {isPending ? 'Saving...' : isBookmarked ? 'Saved' : 'Save'}
+                        {isPending ? <Loader className='animate-spin' /> : isBookmarked ? <Bookmark fill='white' /> : <Bookmark />}
                     </Button>
                 )}
             </SignedIn>
@@ -49,7 +50,7 @@ const Bookmark = ({ loadout, userId, bookmarked }: BookmarkLoadoutParams) => {
 }
 
 
-export default Bookmark
+export default Bookmarking
 
 
 

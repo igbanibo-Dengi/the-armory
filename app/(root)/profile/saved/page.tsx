@@ -24,9 +24,9 @@ const page = async () => {
                     <Link href="/loadouts/create">New Loadout</Link>
                 </Button>
             </section>
-            <section className="container my-8">
+            <section className="container my-8 flex-col space-y-10">
 
-                <span className=" text-3xl text-center whitespace-nowrap lg:text-4xl py-10">
+                <span className=" text-3xl text-center whitespace-nowrap lg:text-4xl">
                     <h3 className={ceaser.className}>Bookmarks</h3>
                 </span>
 
