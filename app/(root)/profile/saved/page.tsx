@@ -11,7 +11,6 @@ const page = async () => {
     const userId = sessionClaims?.userId as string;
 
     const bookmarked = await getBookmarksByUserId({ userId });
-    // console.log(bookmarked);
 
 
     return (
@@ -32,7 +31,7 @@ const page = async () => {
 
                 <div className=' grid grid-cols-1 md:grid-cols-3 gap-5'>
                     {bookmarked.map((bookmark: any) => {
-                        return <div className='rounded-md border-2 relative overflow-hidden flex min-h-[380px] w-full max-w-[400px] flex-col'>
+                        return <div key={bookmark._id} className='rounded-md border-2 relative overflow-hidden flex min-h-[380px] w-full max-w-[400px] flex-col'>
                             <Link
                                 href={`/loadouts/${bookmark.loadout._id}`}
                                 style={{ backgroundImage: `url(${bookmark.loadout.imageUrl})` }}
