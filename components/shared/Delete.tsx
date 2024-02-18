@@ -15,7 +15,6 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-import { Trash2 } from "lucide-react";
 import { deleteLoadout } from "@/lib/actions/loadout.actions";
 
 export const Delete = ({ loadoutId }: { loadoutId: string }) => {

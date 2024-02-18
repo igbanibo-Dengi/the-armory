@@ -1,4 +1,5 @@
 import { ceaser } from '@/app/font'
+import DeleteBookmark from '@/components/shared/DeleteBookmark'
 import { Button } from '@/components/ui/button'
 import { getBookmarksByUserId } from '@/lib/actions/bookmark.action'
 import { auth } from '@clerk/nextjs'
@@ -45,6 +46,9 @@ const page = async () => {
                                 <div className='flex justify-between'>
                                     <p>{bookmark.loadout.title}</p>
                                     <p>{bookmark.loadout.gameMode}</p>
+                                </div>
+                                <div className='flex items-center justify-end'>
+                                    <DeleteBookmark userId={userId} loadoutId={bookmark.loadout._id} />
                                 </div>
                             </div>
                         </div>

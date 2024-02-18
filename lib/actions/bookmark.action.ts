@@ -3,9 +3,9 @@
 import { BookmarkLoadoutParams } from "@/types";
 import { connectToDatabase } from "../database";
 import Bookmark from "../database/models/bookmark.model";
-import User from "../database/models/user.model";
 import { handleError } from "../utils";
 import Loadout from "../database/models/loadout.model";
+import { revalidatePath } from "next/cache";
 
 
 
@@ -35,6 +35,7 @@ export async function bookmarkLoadout({ userId, loadout }: BookmarkLoadoutParams
     }
 }
 
+// GET BOOKMARK BY USER ID
 
 export async function getBookmarksByUserId({ userId }: { userId: string }) {
     try {
@@ -47,6 +48,26 @@ export async function getBookmarksByUserId({ userId }: { userId: string }) {
         return JSON.parse(JSON.stringify(bookmarks));
     } catch (error) {
         handleError(error);
+    }
+}
+
+
+// DELETE BOOKMARK
+
+export async function deleteBookmark({ userId, loadoutId, path }: { userId: string, loadoutId: string, path: string }) {
+
+    try {
+        await connectToDatabase()
+
+        const deleteBookmark = await Bookmark.findOneAndDelete({ user: userId, loadout: loadoutId });
+        if (deleteBookmark) revalidatePath(path)
+        // if (!bookmark) throw new Error('Could not find bookmark');
+
+
+        return `Successfully deleted the ${loadoutId} bookmark.`;
+
+    } catch (error) {
+        handleError(error)
     }
 }
 
